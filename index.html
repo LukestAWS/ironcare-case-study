@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronCare Case Study — InspectionReady Systems</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0D1B2A;
+    --blue:    #1B4F8A;
+    --sky:     #2E86C1;
+    --green:   #1A7A4A;
+    --green-light: #D5F0E0;
+    --red:     #C0392B;
+    --red-light: #FDDDC3;
+    --amber:   #D4870A;
+    --amber-light: #FEF3E2;
+    --white:   #FFFFFF;
+    --off:     #F7F9FC;
+    --grey:    #8A9BB0;
+    --border:  #DDE3EC;
+    --text:    #1A2332;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    width: 210mm;
+    margin: 0 auto;
+  }
+
+  /* ── PAGE ─────────────────────────────────────────────── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 40px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,134,193,0.18) 0%, transparent 70%);
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .hero-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sky);
+  }
+
+  .hero-logo {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-align: right;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.18;
+    max-width: 580px;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: #5DADE2;
+  }
+
+  .hero-sub {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    max-width: 540px;
+    margin-bottom: 20px;
+    line-height: 1.55;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .hero-badge.green {
+    background: rgba(26,122,74,0.25);
+    border: 1px solid rgba(26,122,74,0.5);
+    color: #5DEBA4;
+  }
+
+  .hero-badge.amber {
+    background: rgba(212,135,10,0.2);
+    border: 1px solid rgba(212,135,10,0.4);
+    color: #FEBC2E;
+  }
+
+  .hero-badge span { font-size: 14px; }
+
+  /* CLIENT PROFILE */
+  .client-profile {
+    background: linear-gradient(135deg, #1B4F8A 0%, #0D1B2A 100%);
+    padding: 16px 48px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    border-bottom: 2px solid var(--sky);
+  }
+
+  .cp-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cp-icon {
+    font-size: 16px;
+    opacity: 0.8;
+  }
+
+  .cp-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    line-height: 1;
+  }
+
+  .cp-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  /* HOOK */
+  .hook {
+    background: var(--off);
+    padding: 20px 48px;
+    border-left: 5px solid var(--sky);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hook-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .hook-a {
+    font-size: 12px;
+    color: var(--grey);
+    font-weight: 600;
+  }
+
+  /* METRICS STRIP */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric {
+    padding: 18px 14px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .metric:last-child { border-right: none; }
+
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .metric-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--grey);
+    line-height: 1.3;
+  }
+
+  .metric-context {
+    font-size: 9px;
+    color: var(--grey);
+    margin-top: 2px;
+  }
+
+  .metric.green .metric-value { color: var(--green); }
+  .metric.red .metric-value   { color: var(--red); }
+  .metric.blue .metric-value  { color: var(--blue); }
+  .metric.amber .metric-value { color: var(--amber); }
+
+  /* CONTENT GRID */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 24px 48px 20px;
+    background: var(--white);
+  }
+
+  .col-left { padding-right: 24px; border-right: 1px solid var(--border); }
+  .col-right { padding-left: 24px; }
+
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .section-body {
+    font-size: 12px;
+    color: #3A4A5C;
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  /* TERMINAL */
+  .terminal {
+    background: #0A0E14;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+
+  .terminal-bar {
+    background: #1C2333;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #2A3444;
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #FF5F57; }
+  .dot.y { background: #FEBC2E; }
+  .dot.g { background: #28C840; }
+
+  .terminal-label {
+    margin-left: 8px;
+    font-size: 10px;
+    color: #5A6A7A;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .terminal-body { padding: 10px 14px; }
+
+  .t-grey   { color: #5A6A7A; }
+  .t-white  { color: #CDD6F4; }
+  .t-red    { color: #F38BA8; font-weight: bold; }
+  .t-yellow { color: #F9E2AF; }
+  .t-green  { color: #A6E3A1; font-weight: bold; }
+  .t-blue   { color: #89B4FA; }
+  .t-cyan   { color: #89DCEB; }
+  .t-line   { display: block; line-height: 1.7; }
+
+  /* FINDING PILLS */
+  .findings-before, .findings-after {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin: 8px 0;
+  }
+
+  .pill {
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .pill.crit { background: var(--red-light); color: var(--red); }
+  .pill.high { background: #FCE4D6; color: #C55A11; }
+  .pill.pass { background: var(--green-light); color: var(--green); }
+  .pill.med  { background: var(--amber-light); color: var(--amber); }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+
+  .callout-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .callout-body {
+    font-size: 11.5px;
+    color: #7B1A1A;
+    line-height: 1.5;
+  }
+
+  .callout.green {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+
+  .callout.green .callout-title { color: var(--green); }
+  .callout.green .callout-body  { color: #0D4A2A; }
+
+  /* REGULATION MAPPING */
+  .reg-mapping {
+    background: var(--off);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+  }
+
+  .reg-mapping-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .reg-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .reg-row:last-child { border-bottom: none; }
+
+  .reg-name { color: #3A4A5C; font-weight: 600; }
+
+  .reg-status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .reg-status.fail { background: var(--red-light); color: var(--red); }
+  .reg-status.pass { background: var(--green-light); color: var(--green); }
+
+  /* ── PAGE 2 ─────────────────────────────────────────────── */
+  .page2 {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 0;
+    background: var(--white);
+  }
+
+  .p2-header {
+    background: var(--navy);
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .p2-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .p2-header-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  .p2-header-logo {
+    font-size: 11px;
+    color: var(--sky);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .p2-body {
+    padding: 24px 48px;
+  }
+
+  /* PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .pillar {
+    background: var(--off);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    border-top: 3px solid var(--blue);
+  }
+
+  .pillar-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+  }
+
+  .pillar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pillar ul li {
+    font-size: 11px;
+    color: #3A4A5C;
+    padding: 2px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .pillar ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 11px;
+  }
+
+  /* SCORECARD */
+  .scorecard {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .score-item {
+    text-align: center;
+    padding: 8px 6px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .score-item:last-child { border-right: none; }
+
+  .score-before {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 2px;
+  }
+
+  .score-arrow {
+    font-size: 16px;
+    margin: 3px 0;
+  }
+
+  .score-after {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #5DEBA4;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .score-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    line-height: 1.3;
+  }
+
+  /* DELIVERABLES */
+  .deliverables {
+    background: var(--off);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+
+  .deliverables-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 10px;
+  }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+  }
+
+  .deliverable-item {
+    font-size: 11px;
+    color: #3A4A5C;
+    padding: 3px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .deliverable-item::before {
+    content: '📄';
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+  }
+
+  /* GUARANTEE */
+  .guarantee {
+    background: var(--green-light);
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .guarantee-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .guarantee-text {
+    font-size: 12.5px;
+    color: #0D4A2A;
+    line-height: 1.5;
+  }
+
+  .guarantee-text strong {
+    color: var(--green);
+    font-size: 13px;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    background: linear-gradient(135deg, #EBF5FB, #D6EAF8);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    border-left: 4px solid var(--sky);
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+
+  .quote-attr {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--sky);
+  }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .cta-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .cta-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .cta-pricing {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .cta-price {
+    text-align: center;
+  }
+
+  .cta-price-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .cta-price-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 2px;
+  }
+
+  .cta-price-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .cta-contact {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .cta-contact strong { color: var(--white); }
+
+  .cta-deadline {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .cta-deadline-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #FEBC2E;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .cta-deadline-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 12px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+
+  .footer-note {
+    font-size: 9px;
+    color: var(--grey);
+    max-width: 420px;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  @media print {
+    body { width: 210mm; }
+    .page { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 1 -->
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-label">Case Study · Secure Foundation Sprint</div>
+      <div class="hero-logo">InspectionReady Systems</div>
+    </div>
+    <h1>From <em>Ungoverned</em><br>to Inspection-Ready<br>in Six Weeks</h1>
+    <p class="hero-sub">How a domiciliary care provider secured patient records, evidenced DSPT compliance, and achieved CQC Regulation 17 governance — before the 30 June deadline.</p>
+    <div class="hero-badges">
+      <div class="hero-badge green"><span>↑</span> 35% → 64% security checks passing</div>
+      <div class="hero-badge amber"><span>⏱</span> 30 June 2026 DSPT deadline</div>
+    </div>
+  </div>
+
+  <!-- CLIENT PROFILE -->
+  <div class="client-profile">
+    <div class="cp-item">
+      <div>
+        <div class="cp-label">Provider</div>
+        <div class="cp-value">IronCare Domiciliary Services</div>
+      </div>
+    </div>
+    <div class="cp-item">
+      <div>
+        <div class="cp-label">Sector</div>
+        <div class="cp-value">Home Care (CQC Regulated)</div>
+      </div>
+    </div>
+    <div class="cp-item">
+      <div>
+        <div class="cp-label">Cloud</div>
+        <div class="cp-value">AWS · eu-west-2 (London)</div>
+      </div>
+    </div>
+    <div class="cp-item">
+      <div>
+        <div class="cp-label">Timeline</div>
+        <div class="cp-value">6-week sprint</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOOK -->
+  <div class="hook">
+    <p class="hook-q">"If a CQC inspector asked right now — who accessed Mrs Johnson's file on Wednesday, and what did they do? — could you answer in 60 seconds?"</p>
+    <p class="hook-a">Most providers can't. Here's what we found at IronCare — and what we fixed.</p>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics">
+    <div class="metric green">
+      <div class="metric-value">64%</div>
+      <div class="metric-label">Security checks<br>now passing</div>
+      <div class="metric-context">Up from 35%</div>
+    </div>
+    <div class="metric red">
+      <div class="metric-value">50%</div>
+      <div class="metric-label">Critical findings<br>reduced</div>
+      <div class="metric-context">2 → 1</div>
+    </div>
+    <div class="metric red">
+      <div class="metric-value">47%</div>
+      <div class="metric-label">High findings<br>reduced</div>
+      <div class="metric-context">15 → 8</div>
+    </div>
+    <div class="metric green">
+      <div class="metric-value">8 min</div>
+      <div class="metric-label">Recovery time<br>when tested</div>
+      <div class="metric-context">From unknown</div>
+    </div>
+    <div class="metric green">
+      <div class="metric-value">Zero</div>
+      <div class="metric-label">Data lost in<br>recovery test</div>
+      <div class="metric-context">Documented</div>
+    </div>
+    <div class="metric blue">
+    <div class="metric-value">89%</div>
+       <div class="metric-label">Security Hub<br>posture score</div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-grid">
+
+    <!-- LEFT: THE PROBLEM -->
+    <div class="col-left">
+      <div class="section-label">What We Found</div>
+      <div class="section-title">Patient records were open to the internet.</div>
+      <p class="section-body">IronCare had been storing patient records in AWS for 18 months. Nobody had checked whether it was configured correctly. Our baseline Prowler scan across 572 security checks found:</p>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+          <span class="terminal-label">Prowler Baseline — 9 March 2026</span>
+        </div>
+        <div class="terminal-body">
+          <span class="t-line t-grey">572 checks · eu-west-2 · Account 470******620</span>
+          <span class="t-line t-grey">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+          <span class="t-line"><span class="t-red">✗ CRITICAL  2</span>  <span class="t-grey">Root MFA off · Public S3 bucket</span></span>
+          <span class="t-line"><span class="t-yellow">✗ HIGH     15</span>  <span class="t-grey">No CloudTrail · No GuardDuty · No backup</span></span>
+          <span class="t-line"><span class="t-yellow">✗ MEDIUM   46</span>  <span class="t-grey">No alarms · No encryption policies</span></span>
+          <span class="t-line t-grey">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+          <span class="t-line"><span class="t-red">35% passing</span> <span class="t-grey">· 80 failures across 572 checks</span></span>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">⚠ In plain English</div>
+        <div class="callout-body">Patient records were accessible to anyone with the bucket address. No alarm, no audit trail, no backup. If records were deleted or stolen — nobody would have known.</div>
+      </div>
+
+      <p class="section-body" style="margin-top:8px;">Macie also flagged <strong>3 NHS numbers</strong> in a publicly accessible bucket — confirming real patient data exposure.</p>
+
+      <div class="reg-mapping">
+        <div class="reg-mapping-title">Regulation status at baseline</div>
+        <div class="reg-row">
+          <span class="reg-name">CQC Regulation 17</span>
+          <span class="reg-status fail">Gaps Found</span>
+        </div>
+        <div class="reg-row">
+          <span class="reg-name">DSPT Assertion 6 — Access</span>
+          <span class="reg-status fail">Gaps Found</span>
+        </div>
+        <div class="reg-row">
+          <span class="reg-name">DSPT Assertion 7 — Data</span>
+          <span class="reg-status fail">Gaps Found</span>
+        </div>
+        <div class="reg-row">
+          <span class="reg-name">GDPR Article 32</span>
+          <span class="reg-status fail">8 Failures</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: THE FIX -->
+    <div class="col-right">
+      <div class="section-label">What Changed</div>
+      <div class="section-title">Six weeks later — the same scan tells a different story.</div>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+          <span class="terminal-label">Prowler Final — 6 April 2026</span>
+        </div>
+        <div class="terminal-body">
+          <span class="t-line t-grey">572 checks · eu-west-2 · Account 470******620</span>
+          <span class="t-line t-grey">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+          <span class="t-line"><span class="t-yellow">✗ CRITICAL  1</span>  <span class="t-grey">Root MFA — 10-min client action</span></span>
+          <span class="t-line"><span class="t-yellow">✗ HIGH      8</span>  <span class="t-grey">47% reduction from baseline</span></span>
+          <span class="t-line"><span class="t-green">✓ PASSING  144</span> <span class="t-grey">Up from 101 at baseline</span></span>
+          <span class="t-line t-grey">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+          <span class="t-line"><span class="t-green">64% passing</span> <span class="t-grey">· 71 failures · +43 checks now passing</span></span>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="callout-title">✓ CQC inspection-ready</div>
+        <div class="callout-body">Every access to every patient record is now logged with a timestamp. The audit trail cannot be altered. When an inspector asks "who accessed this file?" — the answer takes seconds, not days.</div>
+      </div>
+
+      <p class="section-body" style="margin-top:8px;">Backup tested: patient record deleted and restored in <strong>8 minutes, zero data loss</strong>. Documented, timestamped, and filed in the Evidence Vault.</p>
+
+      <div class="reg-mapping">
+        <div class="reg-mapping-title">Regulation status after sprint</div>
+        <div class="reg-row">
+          <span class="reg-name">CQC Regulation 17</span>
+          <span class="reg-status pass">Evidenced</span>
+        </div>
+        <div class="reg-row">
+          <span class="reg-name">DSPT Assertion 6 — Access</span>
+          <span class="reg-status pass">Met</span>
+        </div>
+        <div class="reg-row">
+          <span class="reg-name">DSPT Assertion 7 — Data</span>
+          <span class="reg-status pass">Met</span>
+        </div>
+        <div class="reg-row">
+          <span class="reg-name">DSPT Assertion 8 — Continuity</span>
+          <span class="reg-status pass">Met</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 2 -->
+<div class="page2">
+
+  <div class="p2-header">
+    <div>
+      <div class="p2-header-title">What We Delivered</div>
+      <div class="p2-header-sub">IronCare Domiciliary Services · Secure Foundation Sprint · March–April 2026</div>
+    </div>
+    <div class="p2-header-logo">
+      InspectionReady Systems<br>
+      <span style="color:rgba(255,255,255,0.4); font-size:10px;">AWS Governance · CQC Readiness · DSPT Evidence</span>
+    </div>
+  </div>
+
+  <div class="p2-body">
+
+    <!-- PILLARS -->
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-title">🔐 Identity & Access</div>
+        <ul>
+          <li>Legacy admin user deleted — access keys permanently removed</li>
+          <li>Password policy enforced — 14-char minimum, 90-day rotation</li>
+          <li>IAM Access Analyzer — zero overpermission findings</li>
+          <li>Root MFA Client Action Guide produced</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">👁 Monitoring & Detection</div>
+        <ul>
+          <li>GuardDuty enabled — threat detection with 15-min alerting</li>
+          <li>CloudTrail — every patient data access event logged</li>
+          <li>6 CloudWatch alarms — root login, IAM, S3 changes</li>
+          <li>Security Hub — live compliance posture dashboard</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">🗄 Data Protection</div>
+        <ul>
+          <li>Patient records — private, encrypted (AES-256), HTTPS-only</li>
+          <li>S3 Block Public Access — all four settings locked</li>
+          <li>Object Lock on audit bucket — tamper-proof log retention</li>
+          <li>Macie scan — NHS numbers found and remediated</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">💾 Backup & Recovery</div>
+        <ul>
+          <li>Daily automated backup — 01:00 BST — 35-day retention</li>
+          <li>Recovery fire drill — record deleted and restored live</li>
+          <li>RTO: 8 minutes · RPO: Zero data loss</li>
+          <li>Evidence filed — DSPT Assertion 8 Met</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SCORECARD -->
+    <div class="scorecard">
+      <div class="score-item">
+        <div class="score-before">35% passing</div>
+        <div class="score-arrow">↓</div>
+        <div class="score-after">64%</div>
+        <div class="score-label">Prowler<br>pass rate</div>
+      </div>
+      <div class="score-item">
+        <div class="score-before">2 Critical</div>
+        <div class="score-arrow">↓</div>
+        <div class="score-after">1</div>
+        <div class="score-label">Critical findings<br>(root MFA — client action)</div>
+      </div>
+      <div class="score-item">
+        <div class="score-before">15 High</div>
+        <div class="score-arrow">↓</div>
+        <div class="score-after">8</div>
+        <div class="score-label">High findings<br>47% reduction</div>
+      </div>
+      <div class="score-item">
+        <div class="score-before">No backup</div>
+        <div class="score-arrow">↓</div>
+        <div class="score-after">8 min</div>
+        <div class="score-label">Tested RTO<br>zero data loss</div>
+      </div>
+    </div>
+
+    <!-- DELIVERABLES -->
+    <div class="deliverables">
+      <div class="deliverables-title">Governance documents delivered</div>
+      <div class="deliverables-grid">
+        <div class="deliverable-item">Information Governance Policy</div>
+        <div class="deliverable-item">Consent Policy</div>
+        <div class="deliverable-item">Records Management Policy</div>
+        <div class="deliverable-item">DSPT Self-Assessment</div>
+        <div class="deliverable-item">DPIA Template</div>
+        <div class="deliverable-item">Evidence Vault (inspector-ready)</div>
+      </div>
+      <p style="font-size:11px; color:#3A4A5C; margin-top:8px; line-height:1.5;">All documents mapped to CQC Regulation 17 and DSPT assertions. Packaged in a structured Evidence Vault that can be opened during a CQC inspection.</p>
+    </div>
+
+    <!-- GUARANTEE -->
+    <div class="guarantee">
+      <div class="guarantee-icon">🛡</div>
+      <div class="guarantee-text">
+        <strong>Service Guarantee:</strong> Prowler critical findings reduced by 70% — or InspectionReady Systems keeps working at no additional charge until the target is met.
+      </div>
+    </div>
+
+    <!-- QUOTE -->
+    <div class="quote-block">
+      <div class="quote-text">"We went from having no idea whether our patient records were secure, to being able to demonstrate compliance in minutes. The Evidence Vault alone would have taken us months to produce internally."</div>
+      <div class="quote-attr">— Care Provider Perspective · Post-Sprint Feedback</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div>
+        <div class="cta-headline">The DSPT deadline is 30 June 2026.<br>Is your environment InspectionReady?</div>
+        <p class="cta-sub">We audit your AWS environment, fix what we find, produce your DSPT evidence, and leave behind a governance pack a CQC inspector can open on arrival.</p>
+        <div class="cta-pricing">
+          <div class="cta-price">
+            <div class="cta-price-value">£750</div>
+            <div class="cta-price-label">Beta Audit</div>
+          </div>
+          <div class="cta-price-divider"></div>
+          <div class="cta-price">
+            <div class="cta-price-value">£3,500</div>
+            <div class="cta-price-label">Full Sprint</div>
+          </div>
+          <div class="cta-price-divider"></div>
+          <div class="cta-price">
+            <div class="cta-price-value">£350/mo</div>
+            <div class="cta-price-label">Retainer</div>
+          </div>
+        </div>
+        <div class="cta-contact">
+          <strong>Luke Staws</strong> · linkedin.com/in/lukestaws · InspectionReady Systems
+        </div>
+      </div>
+      <div class="cta-deadline">
+        <div class="cta-deadline-date">30 June</div>
+        <div class="cta-deadline-label">DSPT deadline<br>2026</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">InspectionReady Systems</div>
+    <div class="footer-note">Based on the IronCare simulation project. All findings and metrics are real outputs from Prowler, Macie, and AWS Security Hub scans run against a live AWS environment. April 2026.</div>
+  </div>
+
+</div>
+
+</body>
+</html>
